@@ -1,0 +1,34 @@
+<style>
+  html {
+    font-family: "Sans";
+    font-size: 16px;
+  }
+  
+  span {
+    margin-bottom: 2%;
+  }
+
+	div {
+		display: none;
+	}
+  
+  .arrow {
+    margin-left: -2%;
+    font-size
+  }
+</style>
+
+<script>
+function toggle(input) {
+  var text = document.getElementById(input);
+  var button = document.getElementById(input + "-btn");
+  if (window.getComputedStyle(text).display === "none") {
+		text.style.display="block";
+		button.innerHTML = " ▿ ";
+  } else {
+		text.style.display="none";
+    button.innerHTML = "▹  ";
+  }
+}
+
+</script>
