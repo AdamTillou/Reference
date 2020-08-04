@@ -1,0 +1,45 @@
+Sed: A terminal utility that outputs a modified version of its input
+Command usage
+	Output modified version of a file: ``$ sed {options} "[operation/s]" [file]``
+	Output modified version of a terminal command output: ``$ [terminal command] | sed {options} "[operation/s]"``
+Range: A rule put before an operation that determines which lines to apply the operation to
+	Default: Perform the action on every line
+	/ [regex or search pattern] / : Match every line that contains a certain pattern
+	[line number]: Match a certain line number
+	[start number],[end number]: Match every line from the start to end line
+	[start number],+[lines following]: Match the start line and the specified number of lines following it
+	[start number],~[multiple number]: Match the start line and every line until the next line that is a multiple of the specified number
+	[start number]~[step number]: Match the start line, and every following line a multiple of the step number from the start line
+	$: Match the last line
+Operation: An action performed to all or a subset of the lines of the input
+	Perform multiple operations: ``[operation 1] ; [operation 2] ; ...``
+	p: Print the current line, (making it appear twice if -n is not specified)
+	P: Print up to the first newline of the current line
+	d: Delete the current line 
+	c [text]: Replace each line with certain text, but if operating on a range, replace entire range with one instance of the text
+	Q/q: Stop running the sed command immediately/after printing the pattern space
+	i/a [text]: Insert a line with the specified text before/after the pattern space
+	r [file]: Insert the entire contents of a file after the pattern space
+	R [file]: Insert the line of a file corresponding to the line of the main input, after the current line
+	w / W: Write the current line / up to the first newline of the current line to a file
+	l {number}: Insert a copy of the pattern space with new line characters, and optionally a number of characters to wrap after, before the pattern space
+	=: Insert the line number of the current line before the pattern space
+	n / N: Repace with / add the next line to the current line
+	h / H: Replace with / add the pattern space to the hold register
+	g / G: Replace with / add the value in the saved register to the current line
+	x: Save the value of the current line to the hold register, and print the value of the hold register instead
+	y / [source charachter set] / [replacement character set] /: Replace characters in the source character set with those in the repacement character set
+	s / [search pattern] / [new pattern] / {replace options}: Substitute a certain pattern for a new pattern
+		Default replacement option: Replace the first instace on each line
+		g: Replace all instances on each line
+		i: Replace case insensitive matches of the pattern 
+Options
+	Write to origional file (with optional backup): ``-i {backup name}``,``--in-place {backup name}``
+	Don't show the origional pattern space: ``-n``,``--quiet``,``--silent``
+	Show detailed overview of the changes a command makes: ``--debug``
+	Add operations from a script to what is to be executed: ``-e [script]``,``--expression=[script]``
+	Add operations from a file to what is to be executed: ``-f [file]``,``--file=[file]``
+	Specify a global wrap length for the l command: ``-l [wrap length]``,``--line-length=[wrap length]``
+	Use extended regex for pattern matching: ``-E``,``-r``,``--regexp-extended``
+	Consider different files seperately: ``-s``,``--seperate``
+	Separate lines with null characters: ``-z``,``--null-data``

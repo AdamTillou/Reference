@@ -79,31 +79,37 @@ Navigation and Text Management
 		^v [key combo] (Insert mode): Insert a key combonation 
 		^a: Increment a number
 		^x: Decrement a number
-	Text Management Commands
-		Range options: How much of the document to search for matches
-			Default: Search only the current line 
-			[start line],[end line]: Search all text in the range of lines between the start and end number
-			%: Search the entire document
-		Instance options: Which instances of the pattern within the range to match
-			Default: Apply changes to the first instance of each searched line 
-			g: Apply changes to all instances
-			i/I: Case insensitive/sensitive (default is set by the ignorecase setting)
-			c: (In addition to other option) Ask the user what to do for each instance 
-				y: Yes to current instance
-				n: No to current instance
-				a: Yes to all remaining instances
-				q: No to all remaining instances
-				l: Yes to current instance, but no to all after
-		Substitute a pattern: ``:[range] s / [existing pattern] / [new pattern] / [instances]``
-		Sort lines of text: ``:[range] sort/sort!``
-		Insert text from a file/command (optionally to a certain line): ``:[line number]read(r) [file/!bash command]``
-		Insert a range of numbers: ``:put =range([start num], [end num])``
+	Text Management Commands: Commands that modify/insert into the current file 
+		Sort lines of text forward/backward: ``:[range] sort/sort! [options]``
+			Default range: Entire file
+			[start line],[end line]: Set range to a certain range of lines 
+			i: Option to make sorting case insensitive
+		Insert text from a file/command: ``:{line number}read(r) [file/!terminal command]``
+		Insert a range of numbers: ``:{line number}put =range([start num], [end num])``
 		Search multiple files: ``:vimgrep(vim) / [pattern] / g [files]``
 			Show all matches: ``:copen(cope)``
 			Go to next match: ``:cnext(cn)``
 			Go to previous match: ``:cprev(cp)``
 			Go to first match: ``:cfirst(cp)``
 			Go to last match: ``:clast(cp)``
+	Range commands: Command mode commands that can be applied in succession to certain lines specified by the user
+		Range options: Options for which lines to apply each command to
+			Default range: Current line
+			%: Set range to entire file
+			[start line],[end line]: Set range to a specific range of lines
+			g / [pattern] /: Set range to only lines containing the specified pattern
+			v / [pattern] /: Set range to only lines not containing the specified pattern
+		Delete/yank lines, optionally into a register: ``[range] d/y {register}``
+		Move/copy lines: ``[range] m/t [location]``
+			0: Set location to the beginning of the file 
+			$: Set location to the end of the file 
+			[number]: Set the location to a certain line number
+		Substitute a pattern on certain lines: ``:[range] s / [existing pattern] / [new pattern] / [options]``
+			Default option: Apply only to the first instance found within the range
+			g: Option to apply substitution to all instances within the searched range 
+			i/I: Option to make search case insensitive/sensitive
+		Execute a normal mode key sequence on certain lines while using/ignoring user mappings: ``[range] norm/norm! [keys]
+		Join lines together: [range] join
 	Macros: Sequences of keys that can be quickly recorded and used multiple times
 		q[char]: Start recording a macro into the register specified by the character
 		q: Stop recording a Macro
@@ -113,6 +119,7 @@ Navigation and Text Management
 		\+: Matches the previous character 1 or more times
 		\?: Matches the previous character 0 or 1 times
 		.: Matches all characters except for new lines
+		\%V: Matches text if it is in a visual selection
 		^ / $: Matces the start/end of a line
 		\< / \>: Matches the start/end of a word
 		\s / \S: Matches whitespace characters/all but whitespace characters
@@ -128,6 +135,7 @@ Navigation and Text Management
 		\zs / \ze: Indicates that any text before/after should not be part of the matched area, but needs to exist before/after the said area
 	Registers: Places in memory where copied text is stored
 		"[char]: Yank/delete/paste using a certain register represented by the specified character
+		"[capital char]: Yank/delete into the end of a register, adding to what is already there 
 		^R [char] (Insert/Visual Mode): Paste (Insert Mode)/Yank (Visual Mode) from a certain register
 		Special registers: Registers that behave differently from the normal letter/number registers
 		": Default register (stores last text copied into any register)
@@ -242,4 +250,3 @@ Customization
 			Command Mode: ``cmap/cnoremap [new sequence] [existing sequence]``
 			Both in Insert and Command Modes: ``map!/noremap! [new sequence] [existing sequence]``
 			After Operator: ``omap/onoremap [new sequence] [existing motion]``
-			This is a sentance.

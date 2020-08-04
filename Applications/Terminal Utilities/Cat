@@ -1,0 +1,14 @@
+Cat: A terminal utility that outputs one or more inputs concatenated together
+Command usage
+	Output the contents of a file: ``$ cat {command options} [file/s]``
+	Take user input until end text is typed, and output it: ``$ cat {command options} - <<[End text]``
+	Output the standard output of a terminal command: ``$ [terminal command] | cat {command options} -``
+	Output a combination of the above: ``$ cat {command options} [files / -s ] ... {<<End text if needed}``
+Options for hidden characters
+	Show tabs: ``-T``,``--show-tabs``
+	Show EOL characters: ``-E``,``--show-ends``
+	Show other hidden characters: ``-v``,``--show-nonprinting``
+	Show all of the above: ``-A``,``--show-all``
+Additional command options
+	Show line numbers: ``-n``,``--number``
+	Show line numbers on nonempty lines: ``-b``,``--number-nonblank``
