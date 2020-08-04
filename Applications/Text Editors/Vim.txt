@@ -1,0 +1,245 @@
+Vim: An advanced modal text editor
+Usage
+	Open a file in vim: ``$ vim [file]`` 
+	Open a directory in netrw (vim file explorer): ``$ vim [directory]``
+Modes: Vim has several different modes for different types of functions
+	Normal Mode: The default mode, from which you can enter other modes and perform simple text management
+		<Esc>: Enter normal mode from any other mode
+	Insert Mode: A mode for inserting and editing text, that behaves just like a normal text editor works
+		i/a: Enter Insert Mode before/after the cursor location
+		I/A: Enter Insert Mode at the first/last character of the current line
+		gI: Enter Insert Mode at the very beginning of the the current line (before indents)
+		o/O: Enter Insert Mode in a new line below/above the current line
+		s: Enter Insert Mode after deleting the selected text
+		c [motion]: Enter Insert mode after deleting specified text
+	Visual Mode(s): Several modes for visually selecting and manipulating text in various ways
+		Characterwise Visual Mode (v): Visual mode for selecting a range of text
+		Visual Line Mode (V): Visual mode for selecting a range of lines
+		Visual Block Mode (^v): Visual mode for selecting a block of columns and rows
+			I/A: Insert text before/after every row of the block
+			$: Wrap the text to the end of all currently and future selected lines in block mode
+			g^a: Increment each number proportionally to how far it is down the list, creating an increasing sequence if all numbers start the same
+		gv: Enter the previous visual mode as it was before it was exited last
+		o: Modify the location of the other end of the selection
+	Replace Mode: A mode for overwriting the existing text starting at the cursor
+		R: Enter replace mode
+	Command Mode(:): A mode for executing complex commands for advanced text manipulation and file management
+		':' : The colon enters command mode, and is shown at the start of every command mode command
+		<Enter>: Execute a command
+Navigation and Text Management
+	Motions (Normal Mode): Keystrokes either used to move to a position in the text, or select an area of text
+		h / l: To the left/right character
+		k / j: To the previous/next line
+		w / b: To the next/previous start of a word
+		e / ge: To the next/previous end of a word
+		W/B / E/gE: To the next/previous start/end of a word (only separated by spaces)
+		^ / $: To the beginning/end of the text of the line
+		0: To the first character of the line (before indent, if it is there)
+		{ / }: To the previous/next empty line (paragraph)
+		gg/G: To the beginning/end of the file
+		[number] G: To a certain line
+		t / f [char]: Up to/up to and including the next instance of the specified character
+		T / F [char]: Back to/back to and including the last instance of the specified character
+		i / a: Selects an area of text inside (not including spaces) or around (removing spaces) an area of text
+			w: Inside/around the current word
+			s: Inside/around the current sentance
+			p: Inside/around the current paragraph
+			t: Inside/around the current tag
+			(/[/{/</"/': Inside/around the specified container character
+		` [letter]: To the mark specified by the letter
+		` `: To the place where the cursor was last
+		^d / ^u: To the next/previous (half) page
+		* / #: To the next/previous instance of the current word
+		; / ,: To the next/previous instance of the current character
+	Text Modification
+		x / X: Delete the current/before current character  cursor
+		d [motion]: Copy the specified text to the clipboard then, and delete it
+		c [motion]: Copy the specified text to the clipboard, and delete it, and then enter insert mode in its place
+		y [motion]: Copy, or yank, the text specified by the motions to the clipboard
+		p / P: Paste text from the clipboard above/below the current line, or if the text is only part of a line, directly after the cursor
+		r[char]: Replace the currently selected character with the specified character
+		g~ [motion]: Switch the capitalization of the specified text
+		gu / gU [motion]: Set the specified text to lowercase/uppercase
+		> [motion]: Increase the indent of the specified lines
+		* Any action that involves a motion will operate on the entire current line by repeating the last character of the operator in place of the motion
+	Actions
+		u: Undo the last modification
+		^R: Redo the last undone modification
+		J: Combine the next line onto the end of the current line
+		~: Switch the case of the character in front of the cursor
+		/: Search for a string of text
+		n / N: Go to the next/previous instance of searched text
+		g;: Jum p to the previous change that you made
+		^o/^i: Jump to the next/previous jump
+		m [letter]: Set a mark at the cursor location marked by a certain letter
+		ZZ: Save and exit the current file
+		ZQ: Exit the current file without saving
+		^g: Show file information at the bottom of the screen
+		^v [character code] (Insert mode): Insert a unicode character
+		^v [key combo] (Insert mode): Insert a key combonation 
+		^a: Increment a number
+		^x: Decrement a number
+	Text Management Commands
+		Range options: How much of the document to search for matches
+			Default: Search only the current line 
+			[start line],[end line]: Search all text in the range of lines between the start and end number
+			%: Search the entire document
+		Instance options: Which instances of the pattern within the range to match
+			Default: Apply changes to the first instance of each searched line 
+			g: Apply changes to all instances
+			i/I: Case insensitive/sensitive (default is set by the ignorecase setting)
+			c: (In addition to other option) Ask the user what to do for each instance 
+				y: Yes to current instance
+				n: No to current instance
+				a: Yes to all remaining instances
+				q: No to all remaining instances
+				l: Yes to current instance, but no to all after
+		Substitute a pattern: ``:[range] s / [existing pattern] / [new pattern] / [instances]``
+		Sort lines of text: ``:[range] sort/sort!``
+		Insert text from a file/command (optionally to a certain line): ``:[line number]read(r) [file/!bash command]``
+		Insert a range of numbers: ``:put =range([start num], [end num])``
+		Search multiple files: ``:vimgrep(vim) / [pattern] / g [files]``
+			Show all matches: ``:copen(cope)``
+			Go to next match: ``:cnext(cn)``
+			Go to previous match: ``:cprev(cp)``
+			Go to first match: ``:cfirst(cp)``
+			Go to last match: ``:clast(cp)``
+	Macros: Sequences of keys that can be quickly recorded and used multiple times
+		q[char]: Start recording a macro into the register specified by the character
+		q: Stop recording a Macro
+		@[char]: Play back the macro stored in the register specified by the character
+	Regular Expressions: Special character codings that match certain types of characters
+	  *: Matches the previous character any number of times (including 0)
+		\+: Matches the previous character 1 or more times
+		\?: Matches the previous character 0 or 1 times
+		.: Matches all characters except for new lines
+		^ / $: Matces the start/end of a line
+		\< / \>: Matches the start/end of a word
+		\s / \S: Matches whitespace characters/all but whitespace characters
+		\d / \D: Matches digits/all but digits
+		\x / \X: Matches hex digits/all but hex digits
+		\o / \O: Matches octal digits/all but octal digits
+		\h / \H: Matches head of words/all but heads of words
+		\p / \P: Matches printable characters/printable character excluding digits
+		\w / \W: Matches word characters/all but word characters
+		\a / \A: Matches alphabetic characters/all but alphabetic characters
+		\l / \L: Matches lowercase characters/all but lowercase characters
+		\u / \U: Matches uppercase characters/all but uppercase characters
+		\zs / \ze: Indicates that any text before/after should not be part of the matched area, but needs to exist before/after the said area
+	Registers: Places in memory where copied text is stored
+		"[char]: Yank/delete/paste using a certain register represented by the specified character
+		^R [char] (Insert/Visual Mode): Paste (Insert Mode)/Yank (Visual Mode) from a certain register
+		Special registers: Registers that behave differently from the normal letter/number registers
+		": Default register (stores last text copied into any register)
+		0: Yanked register (stores last text yanked into no specific register)
+		-: Deleted register (stores last text deleted into no specific register)
+		_: Null register (does nt=ot save text at all)
+		+: System register (used by other applications
+		.: Inserted regsiter (stores last inserted text)
+		/: Directory register (stores pwd)
+		%: Document register (stores document name)
+		#: Alternate file register (stores last accessed file)
+		':': Command register (stores last executed command)
+	Loops: Repeating loops to apply actions
+		Perform a command on a loop: ``:for i in range([start num], [end num]) | [some command] .i | endfor``
+File Management
+	Simple File Management Commands
+		Force command: Putting an exclamation point at the end of the following commands will force them to happen even if there are unsaved changes in the current file
+		Execute a bash command: ``:![bash command]``
+		Save: ``:write(w)``
+		Save a backup: ``:write(w) [name]``
+		Save a range of lines: ``:[start line],[end line] write(w) [name]``
+		Exit: ``:quit(q)``
+		Save and exit: ``:wq`` / ``:x``
+		Show the current directory: ``:pwd``
+		Open a file: ``:edit(e) [file]``
+		Open a file in view only mode: ``:view [file]``
+		Open a file in a split window: ``:split(sp) [file]``
+	Informative Commands
+		Show the help page: ``:help [topic]``
+		Show recent changes: ``:changes``
+		Show recent jumps: ``:jumps``
+		Show current marks: ``:marks``
+		Show current mappings: ``:map``
+		Show values of current registers: ``:registers(reg)``
+		Show current buffers: ``:buffers(ls)``
+	Netrw: Vim's build in file browser
+		Open a directory in Netrw: ``:edit(e) [directory]``
+		Screen layout: Netrw displays directory info at the top, and a list of files and subdirectories below that
+			../: Indicates the parent directory
+			./: Indicates the current directory
+		Navigation actions: All vim navigation commands, including / for search, work to navigate within netrw
+		Selecting a file/directory:	Press enter while a directory or file is selected to enter/open it
+		Additional Commands: Netrw has many functions outside of simple vim commands, the following some of the most useful
+			F1: Show help file
+			-: Move to parent directory
+			x: Open the current file in a seperate text editor
+			D: Delete the current file
+			R: Rename/move the selected file
+			d: Create a new directory
+			%: Create a new file
+			i: Switch between different file views
+			s: Switch between different sorting methods
+	Buffers: Pointers to vim documents stored in memory, which allow multiple documents to be open at once
+		Show current buffers: ``:buffers(ls)``
+			%a: Indicates the current buffer
+			#: Indicates the last used buffer
+			+: Indicates a buffer with unsaved changes
+			h: Indicates a hidden buffer
+		Remove current buffer: ``:bdelete(bd)``
+		Close current buffer: ``:close(clo)``
+		Open certain buffer: ``:buffer(b) [number]``
+		Open next/previous buffer: ``:bnext(bn) / bprev(bp)``
+		Open certain buffer in split window: ``:sbuffer(sb) [number]``
+		Open next/previous buffer in split window: ``:sbnext(sbn) / sbprev(sbp)``
+		^w h/j/k/l: Go to the left/down/up/right split buffer
+		^w H/J/K/L: Move the current split buffer to the left/down/up/right
+		Open a new tab: ``:newtab``
+		gt / gT: Navigate to the next/previous tab
+Customization
+	Settings
+		Set a setting for the current session: ``:set [option]``
+		Set a setting for the current file: ``:setlocal [option]``
+		Toggle a setting for the session/file: ``:set/setlocal [option] !``
+		Settings options
+			Option Values as Variables: &[option] can be used in expressions as the option value, and printed with ``echo &[option]``
+			[no]compatible: Option presets that are more like the Vi editor
+			[no]number(nu): Show line numbers
+			[no]relativenumber(rnu): Show line numbers as the distance from the current line
+			[no]autoindent: Use the indent of the current line when creating a new one
+			[no]backup: Automatically save a backup of the file when overwriting it
+			[no]showcmd: Show the start of the command you are tying in the bottom of the screen
+			[no]incsearch: Show what you are searching for as you are typing it
+			[no]expandtab: Convert tabs to the correct number of spaces
+			[no]list: Show hidden of line characters
+			[no]ignorecase: Make searching for text case insensitive
+			[no]smartcase: Make searching for text case insensitive, except when uppercase letters are used in the search
+			syntax on/off: Turn on/off syntax highlighting
+			history=[number]: Save a certain number of items in the command history
+			shiftwidth(sw)=[number]: Set the number of spaces in an indent
+			tabstop(ts)=[number]: Set the number of spaces in between tabs
+			softtabstop(sts)=[number]: Set the insert mode tab stop
+			scrolloff(so)=[number]:Set the maximum distance between the cursor and the edges of the screen when scrolling
+			foldmethod(fdm)=value: Set how folds are defined to a certain value
+				foldmethod=indent: Fold all indented sections
+				foldmethod=syntax: Fold based on programming syntax
+				foldmethod=marker: Fold all sections defined by a start and end marker (by default {{{ and }}})
+					foldmarker(fmr)=[string],[string]: Set the start and end fold marker
+				foldmethod=expr: Fold all sections defined by a regular expression
+					foldexpr(fde)=[function]: Set folds based on a function which returns a number for each line, defining the level of the fold
+				foldmethod=diff: In diff mode, fold sections of the file that are unchanged
+	Mappings
+		Map a sequence of characters to a new action: ``:map [new sequence] [existing sequence]``
+		Map without taking into account other mappings: ``noremap [new sequence] [existing sequence]``
+		Special Keys: Special keys are written using angle bracket notation
+			<Esc>, <Space>, <BS> (Backspace), <F1-F12>, <Left,Right,Up,Down>, <Del> <Tab> <CR/Enter/Return>, <PageUp,PageDown>, <Insert>, <Home>, <End>, <bar> (|)
+		Mapping Shift: Mapping Shift plus a character is as simple as typing the Shifted version of the character (Shift+l = L)
+		Modifier Keys: Mapping Control/Shift/Alt/Super with a key is done by <C/S/M/T-[key]>
+		Mode Based Mapping: Certain commands apply maps only to certain modes
+			Normal Mode: ``nmap/nnoremap [new sequence] [existing sequence]``
+			Visual Mode: ``vmap/vnoremap [new sequence] [existing sequence]``
+			Insert Mode: ``imap/inoremap [new sequence] [existing sequence]``
+			Command Mode: ``cmap/cnoremap [new sequence] [existing sequence]``
+			Both in Insert and Command Modes: ``map!/noremap! [new sequence] [existing sequence]``
+			After Operator: ``omap/onoremap [new sequence] [existing motion]``
+			This is a sentance.
