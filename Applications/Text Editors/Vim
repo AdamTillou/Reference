@@ -1,7 +1,9 @@
 Vim: An advanced modal text editor
+
 Usage
 	Open a file in vim: ``$ vim [file]`` 
 	Open a directory in netrw (vim file explorer): ``$ vim [directory]``
+
 Modes: Vim has several different modes for different types of functions
 	Normal Mode: The default mode, from which you can enter other modes and perform simple text management
 		<Esc>: Enter normal mode from any other mode
@@ -26,6 +28,7 @@ Modes: Vim has several different modes for different types of functions
 	Command Mode(:): A mode for executing complex commands for advanced text manipulation and file management
 		':' : The colon enters command mode, and is shown at the start of every command mode command
 		<Enter>: Execute a command
+
 Navigation and Text Management
 	Motions (Normal Mode): Keystrokes either used to move to a position in the text, or select an area of text
 		h / l: To the left/right character
@@ -150,6 +153,7 @@ Navigation and Text Management
 		':': Command register (stores last executed command)
 	Loops: Repeating loops to apply actions
 		Perform a command on a loop: ``:for i in range([start num], [end num]) | [some command] .i | endfor``
+
 File Management
 	Simple File Management Commands
 		Force command: Putting an exclamation point at the end of the following commands will force them to happen even if there are unsaved changes in the current file
@@ -204,6 +208,7 @@ File Management
 		^w H/J/K/L: Move the current split buffer to the left/down/up/right
 		Open a new tab: ``:newtab``
 		gt / gT: Navigate to the next/previous tab
+
 Customization
 	Settings
 		Set a setting for the current session: ``:set [option]``

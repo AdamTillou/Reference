@@ -1,0 +1,46 @@
+Awk: An advanced tool for modifying files
+
+Command usage
+	Show the output of an awk expression on each line of one or more files: ``awk '[expressions separated by spaces]' [file/s]``
+	Run the commands in an awk script on a certain file: ``awk -f [script] [file/s]``
+
+Commands: Options for performing actions at different times
+	Perform an action for every line: ``{ [action] }``
+	Perform an action if a pattern is true for the current line: ``[pattern] { [action] }``
+	Print the entire line if a pattern is true for the current line: ``[pattern]``
+
+Actions: Simple statements to print some value
+	Output the entire line: ``print``
+	Output some value: ``print [value]``
+	Output a formatted string: ``printf("[Formatted string]", [values])``
+		- Printf will not make a newline unless the newline character is specified
+		Reference a string value: ``%s``
+		Reference a numerical value: ``%d``
+		Line values up to a certain column of the string: ``%-[column][letter]``
+	Set a variable to a certain value: ``[var name] = [value]``
+	Set a certain index of an array to a certain value: ``[array name][ [index] ] = [value]``
+	If/else statement: ``if ( [pattern] ) { [action/s] else [action/s] }
+	While loop: ``while ( [pattern] ) { [action/s] ]
+	For loop: ``for ( [start action] ; [while condition]; [update action] ) { [actions] }
+
+Patterns: Expressions that can be either true or false for a certain line
+	If a value does/doesn't equal another value: ``[value] ==/!= [value]``
+	If a value is greater than/less than another value: ``[value] >/< [value]``
+	If a value is greater or equal/less or equal to another value: ``[value] >=/<= [value]``
+	If the line contains a certain string: ``/[string]/``
+	If any of multiple patterns are true: ``[pattern] || [pattern]``
+	If the current line is the first/last line of the file: ``BEGIN`` / ``END``
+
+Values: Short expressions that represent some information about the line
+	Use the value of the entire line: ``$0``
+	Use the value of a field: ``$[value for field number]``
+	Use the number of fields in the line (Number of Fields): ``NF``
+	Use the current line number (Number of Rows): ``NR``
+	Use the value of a string: ``"[text]"``
+	Use a string made up of multiple combined strings: ``[string 1] [string 2] ...``
+	Use multiple values in succession: ``( [value] , [value] )``
+	Use an operation of multiple values: ``( [value] [+/-/*///^] [value] )``
+	Use the value of a variable, or 0 if the variable is undefined: ``[var name]``
+	Use the value of a certain index of an array, or 0 if it is undefined: ``[array][ [index] ]``
+
+Expressions: Modifications of values to represent a new value

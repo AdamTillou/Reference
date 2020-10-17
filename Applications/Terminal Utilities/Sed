@@ -1,7 +1,9 @@
 Sed: A terminal utility that outputs a modified version of its input
+
 Command usage
 	Output modified version of a file: ``$ sed {options} "[operation/s]" [file]``
 	Output modified version of a terminal command output: ``$ [terminal command] | sed {options} "[operation/s]"``
+
 Range: A rule put before an operation that determines which lines to apply the operation to
 	Default: Perform the action on every line
 	/ [regex or search pattern] / : Match every line that contains a certain pattern
@@ -11,6 +13,7 @@ Range: A rule put before an operation that determines which lines to apply the o
 	[start number],~[multiple number]: Match the start line and every line until the next line that is a multiple of the specified number
 	[start number]~[step number]: Match the start line, and every following line a multiple of the step number from the start line
 	$: Match the last line
+
 Operation: An action performed to all or a subset of the lines of the input
 	Perform multiple operations: ``[operation 1] ; [operation 2] ; ...``
 	p: Print the current line, (making it appear twice if -n is not specified)
@@ -33,6 +36,7 @@ Operation: An action performed to all or a subset of the lines of the input
 		Default replacement option: Replace the first instace on each line
 		g: Replace all instances on each line
 		i: Replace case insensitive matches of the pattern 
+
 Options
 	Write to origional file (with optional backup): ``-i {backup name}``,``--in-place {backup name}``
 	Don't show the origional pattern space: ``-n``,``--quiet``,``--silent``

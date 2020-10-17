@@ -1,13 +1,16 @@
 Grep: A terminal utility that outputs instances of a certain pattern of text within an input 
+
 Command usage
 	Search inside a text file: ``$ [grep command] [file]``
 	Search inside a binary file (like a partition): ``$ [grep command] -a [binary file]``
 	Search within a terminal command output: ``$ [terminal command] | [grep command]``
+
 Pattern options
 	Search for a single text pattern: ``$ grep {command options} [pattern]``
 	Search for one or more text patterns: ``$ grep {command options} -e {pattern 1} -e {pattern 2} ...``
 	Search for one or more patterns from files: ``$ grep {command options} -f {pattern file 1} -f {pattern file 2} ...``
 	Search for a combination of the above: ``$ grep {command options} -e/f {pattern/file 1} -e/f {pattern/file 2}
+
 Additional options
 	Ignore cases: ``-i``,``--ignore-case``
 	Only show unmatched lines: ``-v``,``--invert-match``

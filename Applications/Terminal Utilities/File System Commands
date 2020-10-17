@@ -1,8 +1,11 @@
 File system commands: Simple commands used to navigate and display the file system
+
 Show the present working directory: ``$ pwd``
 	Don't resolve symlinks: (Default) ``-L``
 	Resolve symlinks: ``-P``
+
 Change the pwd to the specified path, or if none are specified, the user's home directory: ``$ cd {path}``
+
 Show the contents of the pwd, or optionally a specified directory: ``$ ls {path}``
 	Show all files: ``--all``,``-a``
 	Show all files excpet current and parent directory links: ``--almost-all``,``-A``
@@ -44,6 +47,7 @@ Show the contents of the pwd, or optionally a specified directory: ``$ ls {path}
 		Use creation time: ``--time=btime``
 	Change how the time is displayed: ``--time-style=[style]``
 	Set which colors each file type is: ``LS_COLORS="[type]=[style #];[color #]:[type]=[style #];[color #]: ..."``
+
 Move a file to a new path / into an existing directory: ``$ mv [file/s] [new path]``,``$ mv [file] [existing directory]``
 	Prompt before overwriting a file: ``--interactive``,``-i``
 	Don't prompt before overwriting a file: ``--force``,``-f``
@@ -53,6 +57,7 @@ Move a file to a new path / into an existing directory: ``$ mv [file/s] [new pat
 	Give the backup file a certain suffix: ``-S [suffix]``,``--suffix=[suffix]``
 	Move all source files to a certain directory: ``--target-directory=[directory]``,``-t [directory]``
 	Ignore trailing slashes in the source file: ``--strip-trailing-slashes``
+
 Delete a file: ``$ rm [file]``
 	Remove a directory and all files inside of it: ``--recursive``,``-r``,``-R``
 	Remove an empty directory: ``--dir``,``-d``
@@ -62,6 +67,7 @@ Delete a file: ``$ rm [file]``
 	Show everything being done: ``--verbose``,``-v``
 	Ignore files that are part of a different filesystem: ``--one-filesystem``
 	Allow removing the root directory: ``--no-preserve-root``
+
 Create, or change the timestamp of a file: ``$ touch [new/existing file]``
 	Do not create new files: ``--no-create``,``-c``
 	Change only the access time: ``-a``
