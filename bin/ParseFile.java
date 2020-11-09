@@ -15,7 +15,7 @@ public class ParseFile {
 
 		for (String q : header) {
 			System.out.println(q);
- 		}
+		}
 
 		System.out.println("<html>");
 		System.out.println(printTabs(1) + "<h1>" + lines.get(0) + "</h1>");
@@ -52,6 +52,7 @@ public class ParseFile {
 		}
 		System.out.println("</html>");
 	}
+
 
 	private static List<String> getLineList(String path) {
 		try {

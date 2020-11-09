@@ -1,8 +1,8 @@
 Awk: An advanced tool for modifying files
 
 Command usage
-	Show the output of an awk expression on each line of one or more files: ``awk '[expressions separated by spaces]' [file/s]``
-	Run the commands in an awk script on a certain file: ``awk -f [script] [file/s]``
+	Show the output of an awk expression on each line of one or more files: ``awk '[expressions]' [file/s]``
+	Run the commands in one or more awk scripts on one or more files: ``awk -f [script/s] -f [script/s] [file/s]``
 
 Commands: Options for performing actions at different times
 	Perform an action for every line: ``{ [action] }``
@@ -30,6 +30,7 @@ Patterns: Expressions that can be either true or false for a certain line
 	If the line contains a certain string: ``/[string]/``
 	If any of multiple patterns are true: ``[pattern] || [pattern]``
 	If the current line is the first/last line of the file: ``BEGIN`` / ``END``
+	If the current line contains a certain string: ``/ [string] /``
 
 Values: Short expressions that represent some information about the line
 	Use the value of the entire line: ``$0``

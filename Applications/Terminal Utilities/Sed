@@ -1,8 +1,8 @@
 Sed: A terminal utility that outputs a modified version of its input
 
 Command usage
-	Output modified version of a file: ``$ sed {options} "[operation/s]" [file]``
-	Output modified version of a terminal command output: ``$ [terminal command] | sed {options} "[operation/s]"``
+	Output modified version of a file: ``$ sed {options} "[operation/s seperated by semicolons]" [file]``
+	Output modified version of a terminal command output: ``$ [terminal command] | sed {options} "[operation/s seperated by semicolons]"``
 
 Range: A rule put before an operation that determines which lines to apply the operation to
 	Default: Perform the action on every line
